@@ -1,55 +1,39 @@
-import streamlit as st
+import kagglehub
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
+import matplotlib.pyplot as plt
 
-st.title(" פרויקט 1 למידת מכונה: נדלן - יהלי סביון")
+# 1. הורדה וטעינה אוטומטית של הנתונים
+path = kagglehub.dataset_download("zafarali27/house-price-prediction-dataset")
+df = pd.read_csv(path + "/House Price Prediction Dataset.csv")
 
-# 2. תת-כותרת והסבר קצר
-st.subheader("ברוכים הבאים לאפליקציה לניתוח שוק הנדל\"ן")
-st.write("בפרויקט זה נבדוק אילו משתנים (כמו שטח, מיקום, מצב הדירה ומספר חדרים) משפיעים הכי הרבה על מחיר הנכס.")
+# 2. הגדרת משתנה המטרה והעמודות לחיזוי
+y = df['Price']
+X = df[['Area', 'Location', 'Condition', 'Bedrooms']]
 
-# קטע אינטראקטיבי הממלא את דרישות 3, 4, 5 ו-6 מההנחיות:
-st.subheader("בדיקת תקציב אישית")
+# 3. יצירת שלושה גרפים להצגת הנתונים
+plt.figure(figsize=(18, 5))
 
-# 3. קלט מהמשתמש (טקסט ומספר)
-name = st.text_input("איך קוראים לך?")
-budget = st.number_input("מה התקציב שלך לקניית בית (בשקלים)?", min_value=0, step=100000)
+# גרף 1: מחירו הממוצע של בית לפי אזור (הגרף המקורי שלך)
+plt.subplot(1, 3, 1)
+sns.barplot(data=df, x='Location', y='Price', errorbar=None)
+plt.title('Relationship between Location and Average Price')
+plt.xlabel('Location')
+plt.ylabel('Average price ($)')
 
-# 6. כפתור שמפעיל תנאי
-if st.button("בדוק את התקציב שלי"):
-    if name == "":
-        # 5. תיבת סטטוס (אזהרה) - אם לא הוזן שם
-        st.warning("אנא הכנס/י את שמך כדי שנוכל להמשיך.")
-    elif budget == 0:
-        # 5. תיבת סטטוס נוספת (שגיאה) - אם התקציב הוא 0
-        st.error("התקציב חייב להיות גדול מ-0.")
-    else:
-        # 4. הודעה מותאמת אישית עם f-string + תיבת הצלחה
-        st.success(f"שלום {name}! ראינו שהתקציב שלך הוא {budget} שקלים. מיד נציג לך את נתוני השוק כדי שתוכל/י לקבל החלטה חכמה.")
+# גרף 2: מחיר ממוצע לפי מצב הנכס
+plt.subplot(1, 3, 2)
+sns.barplot(data=df, x='Condition', y='Price', errorbar=None, order=['Poor', 'Fair', 'Good', 'Excellent'])
+plt.title('Relationship between Condition and Average Price')
+plt.xlabel('Condition')
+plt.ylabel('Average price ($)')
 
-st.divider() # קו הפרדה לאסתטיקה
+# גרף 3: הקשר בין שטח הבית (Area) למחיר (פיזור נתונים)
+plt.subplot(1, 3, 3)
+sns.scatterplot(data=df, x='Area', y='Price', alpha=0.6)
+plt.title('Relationship between Area and Price')
+plt.xlabel('Area (sq ft)')
+plt.ylabel('Price ($)')
 
-# --- הצגת הנתונים והגרפים מהמחברת שלך ---
-try:
-    # טעינת הנתונים (שנה לשם הקובץ שלך!)
-    df = pd.read_csv('your_data.csv') 
-    
-    st.subheader("הצצה לנתונים הגולמיים")
-    st.dataframe(df.head())
-    
-    st.info("כעת נציג את הגרפים שהפקנו בחקר הנתונים כדי להבין את המגמות בשוק.")
-    
-    # גרף 1 לדוגמה - מחיר לפי אזור
-    st.write("### 1. מחיר ממוצע לפי אזור")
-    fig, ax = plt.subplots(figsize=(8, 5))
-    sns.barplot(data=df, x='Location', y='Price', ax=ax)
-    plt.title("Average Price by Location")
-    st.pyplot(fig) # פקודה זו מדפיסה את הגרף לאתר
-    
-    st.write("**מסקנה מהגרף:** מתוך הנתונים ניתן לראות כי... (הכנס כאן את המסקנה שכתבת במחברת)")
-    
-    # --- הוסף כאן את שאר הגרפים שלך באותה תבנית בדיוק ---
-
-except FileNotFoundError:
-    st.error("שגיאה: קובץ הנתונים לא נמצא. ודא שהעלית את ה-CSV ל-GitHub ושהשם שלו מדויק בקוד (שורת ה-read_csv).")
+plt.tight_layout()
+plt.show()
