@@ -58,6 +58,7 @@ X = df[['Area', 'Location', 'Condition', 'Bedrooms']]
 
 # 3. יצירת שלושה גרפים להצגת הנתונים
 # שומרים את הגרף לתוך המשתנה fig
+st.subheader("גרפים שיצרתי:")
 fig = plt.figure(figsize=(14, 10))
 
 # גרף 1: מחירו הממוצע של בית לפי אזור 
