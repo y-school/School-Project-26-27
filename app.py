@@ -38,7 +38,7 @@ plt.ylabel('Number of houses')
 
 # גרף 3: הקשר בין שטח הבית למחיר (פיזור נתונים)
 plt.subplot(1, 4, 3)
-sns.displot(data=df, x='Price')
+sns.histplot(data=df, x='Price', kde=False)
 plt.title('Distribution of House Prices')
 plt.xlabel('Price ($)')
 plt.ylabel('Number of houses')
