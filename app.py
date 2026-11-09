@@ -9,6 +9,8 @@ df = pd.read_csv(path + "/House Price Prediction Dataset.csv")
 
 st.title("פרויקט 1 למידת מכונה- נדלן")
 st.subtitle("נוצר על ידי יהלי סביון")
+
+df.header()
 # 2. הגדרת משתנה המטרה והעמודות לחיזוי
 y = df['Price']
 X = df[['Area', 'Location', 'Condition', 'Bedrooms']]
