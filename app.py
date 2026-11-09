@@ -2,6 +2,7 @@ import kagglehub
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import streamlit as st
 
 # 1. הורדה וטעינה אוטומטית של הנתונים
 path = kagglehub.dataset_download("zafarali27/house-price-prediction-dataset")
