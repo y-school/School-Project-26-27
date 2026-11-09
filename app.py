@@ -9,7 +9,7 @@ path = kagglehub.dataset_download("zafarali27/house-price-prediction-dataset")
 df = pd.read_csv(path + "/House Price Prediction Dataset.csv")
 
 st.title("פרויקט 1 למידת מכונה- נדלן")
-st.subtitle("נוצר על ידי יהלי סביון")
+st.header("נוצר על ידי יהלי סביון")
 
 df.header()
 # 2. הגדרת משתנה המטרה והעמודות לחיזוי
