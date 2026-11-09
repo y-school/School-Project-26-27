@@ -1,2 +1,5 @@
 streamlit
 kagglehub
+pandas
+seaborn
+matplotlib
