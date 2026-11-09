@@ -11,15 +11,18 @@ df = pd.read_csv(path + "/House Price Prediction Dataset.csv")
 st.title("פרויקט 1 למידת מכונה- נדלן")
 st.header("נוצר על ידי יהלי סביון")
 
-df.head()
+# הצגת הטבלה באתר
+st.dataframe(df.head())
+
 # 2. הגדרת משתנה המטרה והעמודות לחיזוי
 y = df['Price']
 X = df[['Area', 'Location', 'Condition', 'Bedrooms']]
 
 # 3. יצירת שלושה גרפים להצגת הנתונים
-plt.figure(figsize=(18, 5))
+# שומרים את הגרף לתוך המשתנה fig
+fig = plt.figure(figsize=(18, 5))
 
-# גרף 1: מחירו הממוצע של בית לפי אזור (הגרף המקורי שלך)
+# גרף 1: מחירו הממוצע של בית לפי אזור 
 plt.subplot(1, 3, 1)
 sns.barplot(data=df, x='Location', y='Price', errorbar=None)
 plt.title('Relationship between Location and Average Price')
@@ -33,7 +36,7 @@ plt.title('Relationship between Condition and Average Price')
 plt.xlabel('Condition')
 plt.ylabel('Average price ($)')
 
-# גרף 3: הקשר בין שטח הבית (Area) למחיר (פיזור נתונים)
+# גרף 3: הקשר בין שטח הבית למחיר (פיזור נתונים)
 plt.subplot(1, 3, 3)
 sns.scatterplot(data=df, x='Area', y='Price', alpha=0.6)
 plt.title('Relationship between Area and Price')
@@ -41,4 +44,6 @@ plt.xlabel('Area (sq ft)')
 plt.ylabel('Price ($)')
 
 plt.tight_layout()
-plt.show()
+
+# פקודת ההצגה של הגרף ב-Streamlit
+st.pyplot(fig)
