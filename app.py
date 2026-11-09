@@ -53,8 +53,8 @@ st.write("**עמודות לחיזוי (X):** שטח הבית (Area), מיקום 
 st.write("**נימוק לבחירה:** אלו המאפיינים המרכזיים ביותר שמשפיעים על שווי של נדל״ן במציאות. גודל הבית ומספר החדרים יקבעו את גודל המרחב הבסיסי, המיקום משפיע על הביקוש ועל יוקרת האזור, ומצב הנכס קובע את איכות המגורים בו. בדרך כלל אלו הגורמים היותר חשובים עבור לקוחות שמחפשים לקנות דירה.")
 
 # 2. הגדרת משתנה המטרה והעמודות לחיזוי
-st.code("y = df['Price']")
-st.code("X = df[['Area', 'Location', 'Condition', 'Bedrooms']]")
+st.code("y = df['Price']" ,language="python", *, line_numbers=False, wrap_lines=False, height="content", width="stretch")
+st.code("X = df[['Area', 'Location', 'Condition', 'Bedrooms']]" ,language="python", *, line_numbers=False, wrap_lines=False, height="content", width="stretch")
 
 # 3. יצירת שלושה גרפים להצגת הנתונים
 # שומרים את הגרף לתוך המשתנה fig
