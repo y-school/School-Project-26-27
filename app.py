@@ -23,25 +23,33 @@ X = df[['Area', 'Location', 'Condition', 'Bedrooms']]
 fig = plt.figure(figsize=(18, 5))
 
 # גרף 1: מחירו הממוצע של בית לפי אזור 
-plt.subplot(1, 3, 1)
+plt.subplot(1, 4, 1)
 sns.barplot(data=df, x='Location', y='Price', errorbar=None)
-plt.title('Relationship between Location and Average Price')
+plt.title('Relationship between House Location and Average Price')
 plt.xlabel('Location')
 plt.ylabel('Average price ($)')
 
 # גרף 2: מחיר ממוצע לפי מצב הנכס
-plt.subplot(1, 3, 2)
-sns.barplot(data=df, x='Condition', y='Price', errorbar=None, order=['Poor', 'Fair', 'Good', 'Excellent'])
-plt.title('Relationship between Condition and Average Price')
-plt.xlabel('Condition')
-plt.ylabel('Average price ($)')
+plt.subplot(1, 4, 2)
+sns.countplot(data=df, x='Location')
+plt.title('Number of houses by location')
+plt.xlabel('Location')
+plt.ylabel('Number of houses')
 
 # גרף 3: הקשר בין שטח הבית למחיר (פיזור נתונים)
-plt.subplot(1, 3, 3)
-sns.scatterplot(data=df, x='Area', y='Price', alpha=0.6)
-plt.title('Relationship between Area and Price')
+plt.subplot(1, 4, 3)
+sns.displot(data=df, x='Price')
+plt.title('Distribution of House Prices')
+plt.xlabel('Price ($)')
+plt.ylabel('Number of houses')
+plt.ticklabel_format(style='plain', axis='x')
+
+plt.subplot(1, 4, 4)
+sns.scatterplot(data=df, x='Area', y='Price')
+plt.title('Relationship between House Area and Price')
 plt.xlabel('Area (sq ft)')
 plt.ylabel('Price ($)')
+plt.ticklabel_format(style='plain', axis='y')
 
 plt.tight_layout()
 
