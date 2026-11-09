@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 path = kagglehub.dataset_download("zafarali27/house-price-prediction-dataset")
 df = pd.read_csv(path + "/House Price Prediction Dataset.csv")
 
+st.title("פרויקט 1 למידת מכונה- נדלן")
+st.subtitle("נוצר על ידי יהלי סביון")
 # 2. הגדרת משתנה המטרה והעמודות לחיזוי
 y = df['Price']
 X = df[['Area', 'Location', 'Condition', 'Bedrooms']]
